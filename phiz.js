@@ -28,7 +28,7 @@ export class PhiZ {
 
 		// 3. 出力ホワイトニング (XOR-Shift Fold)
 		// 上位ビットの情報を下位に混ぜ込み、統計的な偏りを完全に除去する
-		return ((s ^= s >>> 16) ^ (s >>> 11)) >>> 0;
+		return (s ^= s >>> 15) >>> 0;
 	}
 
 	/**
@@ -64,3 +64,4 @@ export const createPhiZ = (seed = 0) => {
 	};
 
 };
+
