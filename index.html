@@ -52,7 +52,7 @@
 			<div class="label">Algorithm Editor</div>
 			<textarea id="codeEditor">let s = (this.state += 0x9E3779B9) | 0;
 s = Math.imul(s, (s << 16) | (s >>> 16));
-return ((s ^= s >>> 16) ^ (s >>> 11)) >>> 0;</textarea>
+return (s ^= s >>> 15) >>> 0;</textarea>
 			<div style="display: flex; gap: 10px; margin-top: 10px;">
 				<div style="flex:1"><div class="label">Seed</div><input type="number" id="seedInput" value="0" style="width:100%; padding:8px; box-sizing:border-box;"></div>
 				<div style="flex:1"><div class="label">Constant (hex)</div><input type="text" id="magicInput" value="9E3779B9" style="width:100%; padding:8px; box-sizing:border-box;"></div>
@@ -164,3 +164,4 @@ window.onload = executePhiZ;
 </body>
 
 </html>
+
