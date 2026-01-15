@@ -20,7 +20,7 @@ export class PhiZ {
 	next() {
 		// 1. 状態更新: 黄金比定数を用いた Weyl Sequence
 		// 周期 2^32 を保証しつつ、全ビットを均等に歩進させる
-		let s = (this.state = (this.state + 0x9E3779B9) | 0);
+		let s = (this.state += 0x9E3779B9) | 0;
 
 		// 2. 自己参照回転乗算 (Self-Referential Rotational Multiplication)
 		// 16ビット回転させた自分自身を掛けることで、一撃で強力な非線形拡散を起こす
@@ -28,7 +28,7 @@ export class PhiZ {
 
 		// 3. 出力ホワイトニング (XOR-Shift Fold)
 		// 上位ビットの情報を下位に混ぜ込み、統計的な偏りを完全に除去する
-		return (s ^= s >>> 16) >>> 0;
+		return ((s ^= s >>> 16) ^ (s >>> 11)) >>> 0;
 	}
 
 	/**
@@ -62,4 +62,5 @@ export const createPhiZ = (seed = 0) => {
 		s = Math.imul(s, (s << 16) | (s >>> 16));
 		return (s ^= s >>> 16) >>> 0;
 	};
+
 };
