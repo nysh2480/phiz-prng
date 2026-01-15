@@ -58,10 +58,11 @@ export class PhiZ {
 export const createPhiZ = (seed = 0) => {
 	let state = seed | 0;
 	return () => {
-		let s = (state = (state + 0x9E3779B9) | 0);
+		let s = (state += 0x9E3779B9) | 0;
 		s = Math.imul(s, (s << 16) | (s >>> 16));
-		return (s ^= s >>> 16) >>> 0;
+		return (s ^= s >>> 15) >>> 0;
 	};
 
 };
+
 
